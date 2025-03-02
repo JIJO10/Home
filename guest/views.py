@@ -51,9 +51,9 @@ def log(request):
             return redirect('webadmin:adminhome')
         else:
             error="Invalid Credentials!!"
-            return render(request,"Login.html",{'ER':error})
+            return render(request,"guest/Login.html",{'ER':error})
     else:
-        return render(request,"Login.html")
+        return render(request,"guest/Login.html")
         
 
 def usr(request):
@@ -66,9 +66,9 @@ def usr(request):
                                user_address=request.POST.get('textaddress'),user_zipcode=request.POST.get('zcode'),
                                user_photo=request.FILES.get('file_photo'),user_proof=request.FILES.get('file_proof'),
                                user_pwd=request.POST.get('pwd'),user_place=plc,)
-        return render(request,"NewUser.html",{'CON':con})
+        return render(request,"guest/NewUser.html",{'CON':con})
     else:
-        return render(request,"NewUser.html",{'CON':con})
+        return render(request,"guest/NewUser.html",{'CON':con})
 
 
 def ownr(request):
@@ -81,9 +81,9 @@ def ownr(request):
                                owner_address=request.POST.get('textaddress'),owner_zipcode=request.POST.get('zcode'),
                                owner_photo=request.FILES.get('file_photo'),owner_proof=request.FILES.get('file_proof'),
                                owner_pwd=request.POST.get('pwd'),owner_place=plc,)
-        return render(request,"NewOwner.html",{'CON':con})
+        return render(request,"guest/NewOwner.html",{'CON':con})
     else:
-        return render(request,"NewOwner.html",{'CON':con})
+        return render(request,"guest/NewOwner.html",{'CON':con})
 
 
 
@@ -94,11 +94,11 @@ def ownr(request):
 def AjaxPlace(request):
     dis=District.objects.get(id=request.GET.get('CNTRY'))
     plc=Place.objects.filter(district=dis)
-    return render(request,"AjaxPlace.html",{'plc':plc})
+    return render(request,"guest/AjaxPlace.html",{'plc':plc})
 
 
 def home(request):
-    return render(request,"Home.html")
+    return render(request,"guest/Home.html")
 
 
 
@@ -115,14 +115,14 @@ def ForgetPassword(request):
         )
         return redirect("webguest:verification")
     else:
-        return render(request,"ForgotPassword.html")
+        return render(request,"guest/ForgotPassword.html")
 
 def OtpVerification(request):
     if request.method=="POST":
         otp=int(request.session["otp"])
         if int(request.POST.get('txtotp'))==otp:
             return redirect("webguest:create")
-    return render(request,"Otpverification.html")
+    return render(request,"guest/Otpverification.html")
 
 def CreateNewPass(request):
     if request.method=="POST":
@@ -155,4 +155,4 @@ def CreateNewPass(request):
                 hos.save()
                 return redirect("webguest:Login")
     else:       
-        return render(request,"Createpassword.html")
+        return render(request,"guest/Createpassword.html")
