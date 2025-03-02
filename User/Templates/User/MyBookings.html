@@ -1,0 +1,70 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <br><br><br><br>
+    <div id="tab">
+        <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr>
+                <td>Si No</td>
+                <td>Date</td>
+                <td>Ownername</td>
+                <td>Contact</td>
+                <td>Email</td>
+                <td>RentType</td>
+                <td>Rent Name</td>
+                <td>Image</td>
+                <td>Amount</td>
+                <td>From date</td>
+                <td>To date</td>
+                <td>Action</td>
+            </tr>
+            {% for i in BOOK %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.booking_date}}</td>
+                <td>{{i.rent_id.owner_id.owner_name}}</td>
+                <td>{{i.rent_id.owner_id.owner_contact}}</td>
+                <td>{{i.rent_id.owner_id.owner_email}}</td>
+                <td>{{i.rent_id.renttype_id.renttype_name}}</td>
+                <td>{{i.rent_id.rent_name}}</td>
+                <td><img src="{{i.rent_id.rent_image.url}}" alt="img" width="120px" height="120px"></td>
+                <td>{{i.rent_id.rent_amount}}</td>
+                <td>{{i.booking_fromdate}}</td>
+                <td>{{i.booking_todate}}</td>
+                <td>
+                    
+                    {% if i.booking_status == 1 %}
+                    <p>Accepted</p>
+                        {% if i.payment_status == 0 %}
+                        <p><a href="{% url 'user:paynow' i.id %}">Paynow</a></p>
+                        {% else %}
+                        <p>Already Paid</p>
+                        {% endif %}
+                    {% elif i.booking_status == 2 %}
+                    <p>Rejected!!</p>
+                    {% else %}
+                    <p>Pending...</p>
+                    {% endif %}
+                    
+            </td>
+            </tr>
+            {% endfor %}
+    </table>
+</body>
+</div>
+</head>
+</html>
+{% endblock content %}

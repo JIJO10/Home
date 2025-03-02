@@ -1,0 +1,55 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <u><center><h3><b style="font-family: 'Times New Roman', Times, serif;">COUNTRY</b></h3></center></u>
+    <br><br><br>
+    <div id="tab" align="center">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Country</td>
+                <td><input type="text" name="txt_country"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="save" value="SAVE">
+                <input type="reset" name="cancel" value="CANCEL"></td>
+            </tr>
+        </table>
+        <br><br><br><br>
+        <table align="center" border="1">
+            <tr>
+                <td>SI NO</td>
+                <td>Country</td>
+                <td>action</td>
+            </tr>
+            {% for i in CON %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i}}</td>
+                <td>
+                    <a href="{% url 'webadmin:Del_con' i.id %}">Delete</a>||
+                    <a href="{% url 'webadmin:Up_count' i.id %}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+</body>
+</html>
+
+
+<br><br><br><br><br><br>
+    
+{% endblock content %}

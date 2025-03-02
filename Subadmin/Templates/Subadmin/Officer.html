@@ -1,0 +1,104 @@
+{% extends 'Subadmin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <u><center><h3><b style="font-family: 'Times New Roman', Times, serif;">OFFICER REGISTRATION</b></h3></center></u>
+    <br><br><br>
+    <div id="tab" align="center">
+    <form action="" method="post" id="OfficerForm" enctype="multipart/form-data"  data-state-url="{% url 'webadmin:Ajax-State' %}">
+        {% csrf_token %}
+        <table align="center" border="2">
+
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="txtname" autocomplete="off" placeholder="Enter Name" required=""></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="text" name="cnct" required="" autocomplete="off" placeholder="0123456789" pattern="[0-9]{10}" required=""></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="mail" ></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><input type="radio" name="gender" value="M">male
+                        <input type="radio" name="gender" value="F">female
+                        <input type="radio" name="gender" value="O">others
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><textarea name="textaddress" cols="10" rows="10"></textarea>
+                    </td>
+    
+                </tr>
+                <tr>
+                    <tr>
+                        <td>Country</td>
+                        <td><select name="sel_con" id="sel_con">
+                            <option value="">----select----</option>
+                            {% for i in con %}
+                            <option value="{{i.id}}">{{i}}</option>
+                            {% endfor %}
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td><select name="sel_sta" id="sel_sta">
+                            <option value="">----select----</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                    <td>photo</td>
+                    <td><input type="file" name="file_photo"/></td>
+                </tr>
+                <tr>
+                    <td>Proof</td>
+                    <td><input type="file" name="file_proof" id=""></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="txt_pwd"></td>
+                </tr>
+                <tr>
+                    <td>Confirmpassword</td>
+                    <td><input type="password" name="txt_cfmpwd"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="button" value="register">
+                        <input type="reset" name="cancel" value="cancel">
+                    </td>
+        
+                </tr>
+            </table>
+    </form>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_con").change(function () {
+        var cid = $(this).val();
+        var ur = $("#OfficerForm").attr("data-state-url");
+        $.ajax({
+            url: ur,
+            data: { CNTRY: cid, },
+            success: function (data) {
+                $("#sel_sta").html(data);
+            },
+        });
+    });
+</script>
+</html>
+
+{% endblock content %}

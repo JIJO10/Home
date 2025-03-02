@@ -1,0 +1,44 @@
+{% extends 'Subadmin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+    <table align="center" border="2">
+        <tr>
+        <td align="center" colspan="2"><img src="{{PF.subadmin_photo.url}}" alt="img" width="120px" height="120px" style="border-radius: 60px;"</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{PF.subadmin_name}}</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>{{PF.subadmin_contact}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{PF.subadmin_email}}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>{{PF.subadmin_country}}</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <a href="{% url 'subadmin:editprofile' PF.id %}">Edit Profile</a>
+                <a href="{% url 'subadmin:changepass' PF.id %}">Change Password</a>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
+{% endblock content %}

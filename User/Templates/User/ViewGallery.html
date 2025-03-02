@@ -1,0 +1,28 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+
+<div id="tab">
+<br><br><br>
+<center><h3><b>Gallery</b></h3></center>
+<br><br>
+<table align="center" border="1">
+    <tr>
+        
+        <td>RentName</td>
+        <td>Image</td>
+        
+    </tr>
+    {% for i in GL %}
+    <tr>
+       
+        <td>{{i.rent_id.rent_name}}</td>
+        <td><img src="{{i.gallery_image.url}}" alt="{{i.gallery_image.url}}" width="120px" height="120px"></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}
+
+

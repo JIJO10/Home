@@ -1,0 +1,45 @@
+{% extends 'Officer/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Your Feedback</td>
+                <td><input type="text" name="txt_feedback"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="save" value="Send">
+                <input type="reset" name="cancel" value="Cancel"></td>
+            </tr>
+        </table>
+        <br><br>
+        <table align="center" border="1">
+            <tr>
+                <td>Si No</td>
+                <td>Date</td>
+                <td>feedback</td>
+                <td>Action</td>
+            </tr>
+            {% for i in OFR %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.feedback_date}}</td>
+                <td>{{i.feedback_content}}</td>
+                <td><a href="{% url 'officer:del_feed' i.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+    </form>
+</body>
+</html>
+{% endblock content %}

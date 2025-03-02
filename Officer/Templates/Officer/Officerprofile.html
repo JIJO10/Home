@@ -1,0 +1,45 @@
+{% extends 'Officer/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        <table align="center" border="2">
+            <tr>
+            <td align="center" colspan="2"><img src="{{PF.officer_photo.url}}" alt="img" width="120px" height="120px" style="border-radius: 60px;"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{PF.officer_name}}</td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{PF.officer_contact}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{PF.officer_email}}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>{{PF.officer_state}}</td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <a href="{% url 'officer:editprofile' PF.id %}">Edit Profile</a>
+                    <a href="{% url 'officer:changepass' PF.id %}">Change Password</a>
+            </tr>
+        </table>
+        </form>
+    </body>
+    </html>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br>
+    <div id="tab">
+        <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="2">
+
+                <tr>
+                    <td>Owner Name</td>
+                    <td>{{RNT.owner_id.owner_name}}</td>
+                </tr>
+                <tr>
+                    <td>Owner Contact</td>
+                    <td>{{RNT.owner_id.owner_contact}}</td>
+                </tr>
+                <tr>
+                    <td>Owner Email</td>
+                    <td>{{RNT.owner_id.owner_email}}</td>
+                </tr>
+                <tr>
+                    <td>Rent Name</td>
+                    <td>{{RNT.rent_name}}</td>
+                </tr>
+                <tr>
+                    <td>photo</td>
+                    <td><img src="{{RNT.rent_image.url}}" alt="img" width="120px" height="120px" style="border-radius: 60px;"></td>
+                </tr>
+                <tr>
+                    <td>Advance Amount</td>
+                    <td>{{RNT.rent_amount}}</td>
+                </tr>
+                <tr>
+                    <td>Rent Details</td>
+                    <td width="300">{{RNT.rent_details}}</td>
+                </tr>
+                <tr>
+                    <td>From date</td>
+                    <td><input type="date" name="f_date"></td>
+                </tr>
+                <tr>
+                    <td>To date</td>
+                    <td><input type="date" name="t_date"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" name="save" value="Book Now">
+                        <input type="reset" name="cancel" value="cancel">
+                    </td>
+                </tr>
+    </table>
+</body>
+</div>
+</html>
+{% endblock content %}

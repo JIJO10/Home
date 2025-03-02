@@ -1,0 +1,50 @@
+{% extends 'Officer/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr>
+                <td>Si No</td>
+                <td>Owner Name</td>
+                <td>Contact</td>
+                <td>Email</td>
+                <td>Address</td>
+                <td>gender</td>
+                <td>Zipcode</td>
+                <td>photo</td>
+                <td>proof</td>
+                <td>Country</td>
+                <td>State</td>
+                <td>District</td>
+                <td>Place</td>
+                <td>Action</td>
+            </tr>
+            {% for i in OWNR %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.owner_name}}</td>
+                <td>{{i.owner_contact}}</td>
+                <td>{{i.owner_email}}</td>
+                <td>{{i.owner_address}}</td>
+                <td>{{i.owner_gender}}</td>
+                <td>{{i.owner_zipcode}}</td>
+                <td><img src="{{i.owner_photo.url}}" alt="img" width="120px" height="120px" ></td>
+                <td><img src="{{i.owner_proof.url}}" alt="img" width="120px" height="120px" ></td>
+                <td>{{i.owner_place.district.state.country}}</td>
+                <td>{{i.owner_place.district.state}}</td>
+                <td>{{i.owner_place.district}}</td>
+                <td>{{i.owner_place}}</td>
+                <td><a href="{% url 'officer:Owner_Reject' i.id %}">Reject</a></td>
+            </tr>
+            {% endfor %}
+            {% endblock content %}

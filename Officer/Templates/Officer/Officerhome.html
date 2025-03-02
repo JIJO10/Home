@@ -1,0 +1,22 @@
+{% extends 'Officer/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} <center><h2><b>Welcome {{OF.officer_name}}</b></h2></center>
+    <a href="{% url 'officer:officerprofile' %}">Officer profile</a><br>
+    <a href="{% url 'officer:officercomplaint' %}">Officer complaint</a><br>
+    <a href="{% url 'officer:officerfeedback' %}">Officer feedback</a><br>
+    <a href="{% url 'officer:ownerverfication' %}">Owner Verification</a><br>
+    <a href="{% url 'officer:userverification' %}">User Verification</a> {% endcomment %}
+    <img class="" src="{% static 'Admin/images/layout_img/bg4.jpg' %}" width="1200" height="900">
+</body>
+</html>
+{% endblock content %}

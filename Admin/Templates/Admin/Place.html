@@ -1,0 +1,100 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <u><center><h3><b style="font-family: 'Times New Roman', Times, serif;">PLACE</b></h3></center></u>
+    <br><br><br>
+    <div id="tab" align="center">
+    <form action="" method="POST" id="DistrictForm" data-state-url="{% url 'webadmin:Ajax-State' %}" data-district-url="{% url 'webadmin:Ajax-District' %}">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Country</td>
+                <td><select name="sel_con" id="sel_con">
+                    <option value="">----select----</option>
+                    {% for i in con %}
+                    <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td><select name="sel_sta" id="sel_sta">
+                    <option value="">----select----</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td><select name="sel_dis" id="sel_dis">
+                    <option value="">----select----</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td><input type="text" name="txt_plc" ></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" name="save" value="save">
+                    <input type="reset" name="cancel" value="cancel"></td>
+                </tr>
+            </table>
+            <br><br>
+            <table align="center" border="1">
+                <tr>
+                    <td>Si no</td>
+                    <td>Country</td>
+                    <td>State</td>
+                    <td>District</td>
+                    <td>Place</td>
+                    <td>Action</td>
+                </tr>
+                {% for i in PL %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.district.state.country}}</td>
+                    <td>{{i.district.state}}</td>
+                    <td>{{i.district}}</td>
+                    <td>{{i}}</td>
+                    <td>
+                        <a href="{% url 'webadmin:del_pl' i.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_con").change(function () {
+        var cid = $(this).val();
+        var ur = $("#DistrictForm").attr("data-state-url");
+        $.ajax({
+            url: ur,
+            data: { CNTRY: cid, },
+            success: function (data) {
+                $("#sel_sta").html(data);
+            },
+        });
+    });
+
+    $("#sel_sta").change(function () {
+        var sid = $(this).val();
+        var ur = $("#DistrictForm").attr("data-district-url");
+        $.ajax({
+            url: ur,
+            data: { CNTRY: sid, },
+            success: function (data) {
+                $("#sel_dis").html(data);
+            },
+        });
+    });
+</script>
+</html>
+{% endblock content %}

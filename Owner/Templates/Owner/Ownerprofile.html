@@ -1,0 +1,64 @@
+{% extends 'Owner/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br>
+    <div id="tab">
+        <br>
+    <form action="" method="post">
+        <table align="center" border="2">
+            <tr>
+            <td align="center" colspan="2"><img src="{{PF.owner_photo.url}}" alt="img" width="120px" height="120px" style="border-radius: 60px;"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{PF.owner_name}}</td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{PF.owner_contact}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{PF.owner_email}}</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>{{PF.owner_gender}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{PF.owner_address}}</td>
+            </tr>
+            <tr>
+                <td>Zipcode</td>
+                <td>{{PF.owner_zipcode}}</td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>{{PF.owner_place}}</td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <a href="{% url 'owner:editprofile' PF.id %}">Edit Profile</a>
+                    <a href="{% url 'owner:changepass' PF.id %}">Change Password</a>
+                    
+                    
+            </tr>
+            
+        </table>
+        </form>
+    </div>
+    </body>
+    </html>
+</body>
+</html>
+{% endblock content %}
