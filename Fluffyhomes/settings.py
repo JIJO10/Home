@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x7dvh1@@_!hv@9#dtq$vn-k%u5ul(=$m+r&b*-ch@10xg_&9+p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["home-1-h10s.onrender.com", "127.0.0.1"]
 
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'Fluffyhomes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
